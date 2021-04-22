@@ -1,0 +1,17 @@
+1)
+Horizontal Scaling :
+
+-- Server Side : To handle 50,000 concurrent request to the application, we first need an architecture which can scale up to meet this demand. A classic piece of server side technology which can be used in this case is a 
+load balancer, which takes these request and distributes them to all the application servers under use. We can use a cluster of application servers to scale up to increasing demand. We can use distributed hashing to allocate all these requests to appropriate server in the cluster so as not to overload a single server. Finally the load balancer can also be replicated and deployed so as to overcome a single point of failure.
+
+If some of these requests are being repeated we can use introduce a caching mechanism so as not to query the DB every time a new request comes in.
+
+-- Database side : To speed up the query itself, we can put indices on the columns we use to join and filter, in this case the user_id column of the transactions table, we can also put an index on the couple of json features to speed up their lookup and retrieval.
+
+2)
+
+Similar to part 1, to handle the requests on the server side, we can introduce load balancing to handle the requests themselves. 
+
+We can also cache the item locations for "hot users" (users who are using the application the most and therefore require item locations frequently). We follow the 80-20 principle to store results in cache. We can use Least Frequently used policy as the cache eviction method.
+
+Finally to speed up the query itself, we introduce indices on the filter and join columns, in this case -- id from transaction table. As expressed in the query we can also use a CTE to store a temporary view of the table so as not to recalculate the first part of the query again and again.
