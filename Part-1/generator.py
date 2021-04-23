@@ -192,6 +192,7 @@ def load_game_item_locations(game_item_locations):
 	close_connection(conn, cursor)
 
 
+# Entry point of the script.
 def main():
     users = get_users()
 	transactions = generate_transactions(users)
