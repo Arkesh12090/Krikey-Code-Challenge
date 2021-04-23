@@ -195,8 +195,8 @@ def load_game_item_locations(game_item_locations):
 # Entry point of the script.
 if __name__ == "__main__":
     users = get_users()
-transactions = generate_transactions(users)
-locations = generate_locations(users)
+    transactions = generate_transactions(users)
+    locations = generate_locations(users)
 item_locations = generate_item_locations(users)
 
 load_transactions(transactions)
